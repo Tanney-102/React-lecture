@@ -1,0 +1,14 @@
+body {
+    box-sizing:border-box;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #dfdfdf;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}

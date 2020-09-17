@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단 게임</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+        
+    <script type="text/babel">
+        //functional component
+        // setState, ref 등을 사용할 수 없음 => 간략하게 나타내기 위함
+        // const GuGuDan = () => {
+        //     return <div>Hello, Hooks</div>
+        // }
+
+        // Hooks -> functional component에서도 state와 ref를 쓸 수 있도록 함
+        // use~~ 
+        const GuGuDan = () => {
+            const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+            const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+            const [value, setValue] = React.useState('');
+            const [result, setResult] = React.useState('');
+            const inputRef = React.useRef(null);
+
+            const listenInputState = (e) => {
+                setValue(e.target.value);
+            } 
+
+            const listenEnterKey = (e) => {
+                if(e.key === 'Enter') {
+                    checkResult();
+                }
+            }
+
+            const checkResult = () => {
+                if(value === '') return;
+
+                if(parseInt(value) === first * second){
+                    setResult(value + ', 정답');
+                    setFirst(Math.ceil(Math.random() * 9));
+                    setSecond(Math.ceil(Math.random() * 9));
+                    setValue('');
+                    inputRef.current.focus();
+                } else {
+                    setResult(value + ', 오답');
+                    setFirst(Math.ceil(Math.random() * 9));
+                    setSecond(Math.ceil(Math.random() * 9));
+                    setValue('');
+                    inputRef.current.focus();
+                }
+            }
+
+            return (
+                <React.Fragment>
+                    <div>{first} X {second} = ??</div>
+                    <input ref={inputRef} type="number" value={value} onChange={listenInputState} onKeyUp={listenEnterKey}/>
+                    <button onClick={checkResult}>입력</button>
+                    <div>{result}</div>
+                </React.Fragment>
+            );
+        }
+    </script>
+    <script type="text/babel">
+        ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+    </script>
+</body>
+</html>

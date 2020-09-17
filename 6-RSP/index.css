@@ -1,0 +1,15 @@
+#root {
+    margin-left:20px;
+}
+
+#computer {
+    width: 200px;
+    height: 350px;
+    margin-bottom:10px;
+    background: url(./rsp.jpg);
+    background-repeat: no-repeat;
+    background-size:700px;
+    /* background-position: 93% 30%; */
+}
+
+/* 10, 52, 93  */

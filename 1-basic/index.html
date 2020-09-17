@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // jsx
+        class LikeButton extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    liked : false,
+                };
+            }
+
+            render() {
+                return <button type="submit"
+                        onClick={() => {
+                            if(this.state.liked){  
+                                this.setState({ liked: false });
+                            } else {
+                                this.setState({ liked: true })
+                            }
+                        }}>
+                            {this.state.liked ? 'Liked' : 'Like'}
+                        </button>
+            }
+        }
+    </script>
+    <script type="text/babel">
+        ReactDOM.render(<LikeButton />, document.querySelector('#root'));
+    </script>
+</body>
+</html>
